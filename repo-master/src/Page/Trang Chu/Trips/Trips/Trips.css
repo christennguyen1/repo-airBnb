@@ -1,0 +1,83 @@
+.my_pofolio{
+    height:480px;
+    width:27%;
+    text-align: center;
+}
+.my_trips{
+    width:70%;
+}
+
+@media (min-width: 400px) {
+    .my_pofolio{
+        height:480px;
+        width:100%;
+        text-align: center;
+    }
+    .my_trips{
+        width:100%;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .my_pofolio{
+        height:480px;
+        width:100%;
+        text-align: center;
+    }
+    .my_trips{
+        width:100%;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .my_pofolio{
+        height:480px;
+        width:100%;
+        text-align: center;
+    }
+    .my_trips{
+        width:100%;
+    }
+  }
+
+  @media (min-width: 800px) {
+    .manager_pofolio{
+        display: flex;
+    }
+    .my_pofolio{
+        height:500px;
+        width:40%;
+        text-align: center;
+    }
+    .my_trips{
+        width:60%;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .manager_pofolio{
+        display: flex;
+    }
+    .my_pofolio{
+        height:480px;
+        width:40%;
+        text-align: center;
+    }
+    .my_trips{
+        width:60%;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .my_pofolio{
+        height:480px;
+        width:27%;
+        text-align: center;
+    }
+    .my_trips{
+        width:70%;
+    }
+  }
+  @media (min-width: 1536px) {
+    
+  }

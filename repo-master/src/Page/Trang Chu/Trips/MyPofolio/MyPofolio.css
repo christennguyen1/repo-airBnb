@@ -1,0 +1,8 @@
+.pofolio_button:hover{
+    background-color: gray;
+    transition: 0.5s;
+}
+.pofolio_button:hover p{
+   color:white;
+   transition: 0.5s;
+}

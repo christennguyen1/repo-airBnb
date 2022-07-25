@@ -1,0 +1,26 @@
+.box-shadow-section-item{
+    -webkit-box-shadow: 0px 0px 15px 10px rgba(220,220,220,0.6); 
+    box-shadow: 0px 0px 15px 10px rgba(220,220,220,0.6);
+}
+.ant-menu-item-icon:hover{
+    color: #ff768f !important;
+}
+.ant-menu-light .ant-menu-item:hover{
+    color: #ff768f !important;
+}
+.ant-menu-item-selected a,.ant-menu-item-selected,.ant-menu-submenu-selected{
+    color: #ff768f !important;
+}
+.ant-menu-item a:hover {
+    color: #ff768f !important;
+}
+.ant-menu-light .ant-menu-submenu-title:hover{
+    color: #ff768f !important;
+}
+.ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-arrow{
+    color: #ff768f !important;
+}
+.ant-pagination-item-active,.ant-pagination-item-active:hover,.ant-pagination-item:hover {
+    border-color: #ff768f !important;
+    transition: 0.3;
+}

@@ -1,0 +1,95 @@
+.img_itemMot{
+    width:520px;
+    height:380px;
+    border-radius: 15px 0 0 15px;
+}
+.img_itemHai{
+    width:260px;
+    height:180px;
+}
+.img_itemBa{
+    width:260px;
+    height:180px;
+    border-radius: 0 15px 0 0;
+}
+.img_itemBon{
+    width:260px;
+    height:180px;
+    border-radius: 0 0 15px 0;
+}
+.item_imgHai{
+    display: none;
+}
+.img_svg_item{
+    font-size: 30px;
+    padding-right: 8px;
+}
+.p_svg_item{
+    margin-top: 5px;
+    font-size: 15px;
+}
+.infor_item{
+    width:100%;
+    position: relative;
+}
+.payment_item{
+    position: relative;
+    width:100%;
+}
+.payment_item_dec{
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.detail_image{
+    position: relative;
+}
+
+.detail_abso{
+    position: absolute;
+    content: "";
+    bottom:15px;
+    right:70px;
+    z-index: 10;
+}
+
+@media (min-width: 480px) {
+  .calendar_item{
+    display: none;
+  }
+}
+
+@media (min-width: 600px) {
+    .calendar_item{
+        display: block;
+      }
+}
+
+@media (min-width: 1024px) {
+    .item_imgHai {
+        display:flex;
+    }
+    .infor_item{
+        width: 60.67%;
+    }
+    .payment_item{
+        width:33.33%;
+        margin-left: 60px;
+    }
+    .calendar_item{
+        display: block;
+    }
+}
+
+/* @media (min-width: 1280px) {
+    .item_imgHai {
+        display:flex;
+    }
+    .infor_item{
+        width: 100%;
+    }
+    .payment_item{
+        width:100%
+    }
+} */

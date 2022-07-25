@@ -1,0 +1,11 @@
+.login_big{
+    background-color: coral;
+}
+.img_form{
+    width:100%;
+    background-color: white;
+    padding:30px;
+    border-radius: 20px;
+    text-align: center;
+    justify-content: center;
+}
