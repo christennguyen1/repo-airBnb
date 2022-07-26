@@ -9,7 +9,7 @@ import { message } from "antd";
 import { history } from "../../App";
 import httpServ from "../../serviceWorker/http.service";
 import localStorageServ from "../../serviceWorker/locaStorage.service";
-import { SET_USER_INFOR } from "../Constants/userConstant";
+import { SET_EDIT_TAM, SET_USER_INFOR } from "../Constants/userConstant";
 
 export const loginUserAction = (data) => {
   return (dispatch) => {
@@ -92,6 +92,10 @@ export const getUserInforAction = (id) => {
       .then((res) => {
         dispatch({
           type: SET_USER_DETAILS_INFOR,
+          payload: res.data,
+        });
+        dispatch({
+          type: SET_EDIT_TAM,
           payload: res.data,
         });
       })

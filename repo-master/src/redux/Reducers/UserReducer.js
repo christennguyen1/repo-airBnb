@@ -1,7 +1,7 @@
 import { localServe } from "../../Services/LocalServe";
 import localStorageServ from "../../serviceWorker/locaStorage.service";
 import { UserDetailModel } from "../../_core/models/userDetailModel";
-import { SET_USER_INFOR } from "../Constants/userConstant";
+import { SET_EDIT_TAM, SET_USER_INFOR } from "../Constants/userConstant";
 import {
   GET_USER_LIST,
   LOGIN,
@@ -13,6 +13,7 @@ import {
 let initialState = {
   userInfor: localStorageServ.userInfor.get(),
   userInforDetails: new UserDetailModel(),
+  userInforEditUser: new UserDetailModel(),
   userInforDetailsTickets: [],
   userList: [],
 };
@@ -44,6 +45,11 @@ export const userReducer = (state = initialState, action) => {
     }
     case SET_USER_DETAILS_TICKET_INFOR: {
       state.userInforDetailsTickets = action.payload;
+      return { ...state };
+    }
+
+    case SET_EDIT_TAM: {
+      state.userInforEditUser = action.payload;
       return { ...state };
     }
 

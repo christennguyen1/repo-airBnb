@@ -27,7 +27,8 @@ import AdminAddRoom from "./Page/AdminPages/AdminRooms/AdminAddRoom/AdminAddRoom
 import AdminEditRoom from "./Page/AdminPages/AdminRooms/AdminEditRoom/AdminEditRoom";
 import AdminValueate from "./Page/AdminPages/AdminValueate/AdminValueate";
 import AdminTemplate from "./Templates/AdminTemplate/AdminTemplate";
-import EditUser from "./Page/ChiTietPhong/editUser/EditUser";
+import EditUser from "./Page/Trang Chu/Trips/editUser/EditUser";
+
 
 export const history = createBrowserHistory();
 
@@ -61,7 +62,7 @@ function App() {
           <Route path="/register" component={Register} />
           <Route path="/detail/:id" component={ChiTietPhong} />
           <Route path="/profile/:id" component={Trips} />
-          <Route path="/edituser/:id" component={EditUser} />
+          <Route path="/edituser/:id" component={AdminEditUser} />
 
           <Route
             exact

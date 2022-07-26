@@ -4,9 +4,11 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import moment from "moment";
-import { SET_USER_DETAILS_INFOR } from "../../../redux/Constants/userType";
-import localStorageServ from "../../../serviceWorker/locaStorage.service";
+import { SET_USER_DETAILS_INFOR } from "../../../../redux/Constants/userType";
+import localStorageServ from "../../../../serviceWorker/locaStorage.service";
 import { useHistory } from "react-router-dom";
+import { updateUserInforAction } from "../../../../redux/Actions/userAction";
+import { updateUserInfor } from "../../../../redux/Actions/userActions";
 
 export default function EditUser() {
   const dispatch = useDispatch();
@@ -29,7 +31,7 @@ export default function EditUser() {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      _id: userInfor._id,
+      id: userInfor._id,
       name: userInfor.name,
       address: userInfor.address,
       email: userInfor.email,
@@ -38,16 +40,12 @@ export default function EditUser() {
       password: userInfor.password,
       birthday: userInfor.birthday,
       type:userInfor.type,
-      avatar:userInfor.avatar,
-      deleteAt:userInfor.deleteAt,
-      tickets:userInfor.tickets,
-      __v:userInfor.__v,
     },
     onSubmit: (values) => {
-    //   dispatch(updateUserInforAction(values, values.id));
-        localStorageServ.userInfor.remove();
-        localStorageServ.userInfor.set(values);
-    },
+     // dispatch(updateUserInforAction(values, values.id));
+    //     localStorageServ.userInfor.remove();
+    //     localStorageServ.userInfor.set(values);
+     },
     validationSchema: Yup.object({
       name: Yup.string()
         .required("* Required!")
@@ -73,6 +71,7 @@ export default function EditUser() {
     let birthday = moment(value);
     formik.setFieldValue("birthday", birthday);
   };
+  console.log(userInfor);
 
   return (
     <div className="container mx-auto" style={{ width: 800 }}>

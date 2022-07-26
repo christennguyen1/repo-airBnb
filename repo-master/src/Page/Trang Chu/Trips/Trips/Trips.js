@@ -11,13 +11,13 @@ import InforTrips from "../InforTrips/InforTrips";
 import MyPofolio from "../MyPofolio/MyPofolio";
 import httpServ from "../../../../serviceWorker/http.service";
 import NavDifferent from "../../../../components/NavDifferent/NavDifferent";
-import { getListTicketsByUserAction } from "../../../../redux/Actions/userAction";
+import { getListTicketsByUserAction, getUserInforAction } from "../../../../redux/Actions/userAction";
 import { history } from "../../../../App";
 
 export default function Trips() {
   const dispatch = useDispatch();
   let { id } = useParams();
-  let { userInfor, userInforDetailsTickets } = useSelector(
+  let { userInfor, userInforDetailsTickets, userInforEditUser } = useSelector(
     (state) => state.userReducer
   );
 
@@ -25,8 +25,11 @@ export default function Trips() {
 
   useEffect(() => {
     dispatch(getListTicketsByUserAction(id));
-    history.push(`/profile/${id}`);
+    dispatch(getUserInforAction(userInfor._id));
+    // history.push(`/profile/${id}`);
   }, []);
+
+  console.log(userInforEditUser);
 
   const handleShowMore = () => {
     setShowMore(!showMore);
@@ -34,9 +37,9 @@ export default function Trips() {
   let userInforDetailsTicketsSliced;
   showMore
     ? (userInforDetailsTicketsSliced = userInforDetailsTickets.slice(
-        0,
-        userInforDetailsTickets.length
-      ))
+      0,
+      userInforDetailsTickets.length
+    ))
     : (userInforDetailsTicketsSliced = userInforDetailsTickets.slice(0, 2));
 
   const renderTable = (phong) => {
@@ -56,9 +59,12 @@ export default function Trips() {
           </div>
           <div className="my_trips">
             <h1 className="text-3xl">Hi I'm {userInfor?.name}</h1>
-            <NavLink to={`/edituser/${id}`}>
-            <h3 className="underline cursor-pointer text-lg">Edit profile</h3>
-            </NavLink>
+            <button
+              onClick={() => {
+                history.push(`/edituser/${id}`);
+              }}>
+              <h3 className="underline cursor-pointer text-lg">Edit profile</h3>
+            </button>
             <div className="flex flex-warp mt-8">
               <i className="fa-solid fa-star text-xl mr-1"></i>
               <h3 className="text-2xl">0 review</h3>

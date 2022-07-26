@@ -5,6 +5,7 @@ import { updateUserInforAction } from "../../../../redux/Actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import moment from "moment";
+import { history } from "../../../../App";
 
 export default function AdminEditUser() {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ export default function AdminEditUser() {
     },
     onSubmit: (values) => {
       dispatch(updateUserInforAction(values, values.id));
+      setTimeout(() => {
+        history.push("/admin/user");
+      }, 1000);
     },
     validationSchema: Yup.object({
       name: Yup.string()

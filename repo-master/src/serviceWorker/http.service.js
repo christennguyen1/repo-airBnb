@@ -4,35 +4,49 @@ import AxiosServ from "./axios.service";
 class HttpRequestService {
   constructor() {}
 
-  layDanhSachPhong = () => {
-    const url = "/api/rooms";
+  // user Log
 
-    return AxiosServ.getMethod(url);
-  };
-  layThongTinPhong = (id) => {
-    const url = `/api/rooms/${id}`;
-
-    return AxiosServ.getMethod(url);
-  };
-  layDanhGiaPhong = (id) => {
-    const url = `/api/reviews/byRoom?roomId=${id}`;
-
-    return AxiosServ.getMethod(url);
-  };
-  layVeDaDangKi = (id) => {
-    const url = `/api/tickets/by-user?userId=${id}`;
-
-    return AxiosServ.getMethod(url);
-  };
   dangNhap = (data) => {
     const url = "/api/auth/login";
 
     return AxiosServ.postMethod(url, data);
   };
+
   dangKi = (data) => {
     const url = "/api/auth/register";
 
     return AxiosServ.postMethod(url, data);
+  };
+
+  // user phong
+
+  layDanhSachPhong = () => {
+    const url = "/api/rooms";
+
+    return AxiosServ.getMethod(url);
+  };
+
+  layThongTinPhong = (id) => {
+    const url = `/api/rooms/${id}`;
+
+    return AxiosServ.getMethod(url);
+  };
+
+  datPhong=(data)=>{
+    const url=`/api/rooms/booking`;
+    return AxiosServ.postMethod(url,data);
+  }
+
+  layDanhGiaPhong = (id) => {
+    const url = `/api/reviews/byRoom?roomId=${id}`;
+
+    return AxiosServ.getMethod(url);
+  };
+
+  layVeDaDangKi = (id) => {
+    const url = `/api/tickets/by-user?userId=${id}`;
+
+    return AxiosServ.getMethod(url);
   };
 
   //user services
@@ -81,12 +95,6 @@ class HttpRequestService {
   };
 
   // location services
-
-  datPhong=(data)=>{
-    const url=`/api/rooms/booking`;
-
-    return AxiosServ.postMethod(url,data);
-  }
   
   getLocationList = (location = "") => {
     if (location.trim() !== "") {

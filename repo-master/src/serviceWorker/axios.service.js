@@ -31,7 +31,7 @@ class AxiosService {
       headers: {
         tokenByClass: TOKEN_CYBERSOFT,
         token: localStorageServ.token.get(),
-        // Authorization: "bearer " + localStorageServ.tokenAdmin.get(),
+       Authorization: "bearer " + localStorageServ.token.get(),
       },
     };
   };
