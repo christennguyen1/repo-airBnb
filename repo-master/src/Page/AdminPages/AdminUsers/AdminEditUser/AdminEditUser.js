@@ -9,7 +9,7 @@ import { history } from "../../../../App";
 
 export default function AdminEditUser() {
   const dispatch = useDispatch();
-  const { userInforDetails } = useSelector((state) => state.userReducer);
+  const { userInforDetails,userInfor } = useSelector((state) => state.userReducer);
 
   //Form
   const { Option } = Select;
@@ -35,12 +35,17 @@ export default function AdminEditUser() {
       gender: userInforDetails.gender,
       password: userInforDetails.password,
       birthday: userInforDetails.birthday,
-      type: "ADMIN",
+      type: userInforDetails.type,
     },
     onSubmit: (values) => {
       dispatch(updateUserInforAction(values, values.id));
       setTimeout(() => {
+        if(userInfor.type==="ADMIN"){
         history.push("/admin/user");
+        }
+        else {
+          history.push(`/profile/${values.id}`);
+        }
       }, 1000);
     },
     validationSchema: Yup.object({

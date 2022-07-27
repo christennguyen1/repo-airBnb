@@ -1,19 +1,16 @@
 import React from "react";
 import { Button, Input, Form, Select, DatePicker } from "antd";
 import * as Yup from "yup";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import moment from "moment";
-import { SET_USER_DETAILS_INFOR } from "../../../../redux/Constants/userType";
-import localStorageServ from "../../../../serviceWorker/locaStorage.service";
-import { useHistory } from "react-router-dom";
+import { history } from "../../../../App";
 import { updateUserInforAction } from "../../../../redux/Actions/userAction";
-import { updateUserInfor } from "../../../../redux/Actions/userActions";
 
-export default function EditUser() {
+export default function AdminEditUser() {
   const dispatch = useDispatch();
-  let history = useHistory();
-  const { userInfor } = useSelector((state) => state.userReducer);
+  const {  userInforEditUser } = useSelector((state) => state.userReducer);
 
   //Form
   const { Option } = Select;
@@ -31,21 +28,22 @@ export default function EditUser() {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      id: userInfor._id,
-      name: userInfor.name,
-      address: userInfor.address,
-      email: userInfor.email,
-      phone: userInfor.phone,
-      gender: userInfor.gender,
-      password: userInfor.password,
-      birthday: userInfor.birthday,
-      type:userInfor.type,
+      id:  userInforEditUser._id,
+      name:  userInforEditUser.name,
+      address:  userInforEditUser.address,
+      email:  userInforEditUser.email,
+      phone:  userInforEditUser.phone,
+      gender:  userInforEditUser.gender,
+      password:  userInforEditUser.password,
+      birthday:  userInforEditUser.birthday,
+      type: userInforEditUser.type,
     },
     onSubmit: (values) => {
      // dispatch(updateUserInforAction(values, values.id));
-    //     localStorageServ.userInfor.remove();
-    //     localStorageServ.userInfor.set(values);
-     },
+      // setTimeout(() => {
+      //   history.push(`/profile/${values.id}`);
+      // }, 1000);
+    },
     validationSchema: Yup.object({
       name: Yup.string()
         .required("* Required!")
@@ -71,7 +69,6 @@ export default function EditUser() {
     let birthday = moment(value);
     formik.setFieldValue("birthday", birthday);
   };
-  console.log(userInfor);
 
   return (
     <div className="container mx-auto" style={{ width: 800 }}>

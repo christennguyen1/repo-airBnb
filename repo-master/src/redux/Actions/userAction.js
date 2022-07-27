@@ -127,9 +127,6 @@ export const updateUserInforAction = (value, id) => {
       .updateUserInfor(value, id)
       .then((res) => {
         message.success("Cập nhật thành công");
-        setTimeout(() => {
-          history.push("/admin/user");
-        }, 1000);
       })
       .catch((err) => {
         console.log("err", err);

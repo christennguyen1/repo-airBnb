@@ -17,7 +17,7 @@ import { history } from "../../../../App";
 export default function Trips() {
   const dispatch = useDispatch();
   let { id } = useParams();
-  let { userInfor, userInforDetailsTickets, userInforEditUser } = useSelector(
+  let { userInfor, userInforDetailsTickets, userInforDetails } = useSelector(
     (state) => state.userReducer
   );
 
@@ -25,11 +25,11 @@ export default function Trips() {
 
   useEffect(() => {
     dispatch(getListTicketsByUserAction(id));
-    dispatch(getUserInforAction(userInfor._id));
+    dispatch(getUserInforAction(id));
     // history.push(`/profile/${id}`);
   }, []);
 
-  console.log(userInforEditUser);
+ 
 
   const handleShowMore = () => {
     setShowMore(!showMore);
@@ -58,10 +58,13 @@ export default function Trips() {
             <MyPofolio />
           </div>
           <div className="my_trips">
-            <h1 className="text-3xl">Hi I'm {userInfor?.name}</h1>
+            <h1 className="text-3xl">Hi I'm {userInforDetails?.name}</h1>
             <button
               onClick={() => {
-                history.push(`/edituser/${id}`);
+                dispatch(getUserInforAction(userInfor._id));
+                setTimeout(() => {
+                     history.push(`/edituser/${userInfor._id}`);
+                   }, 500);
               }}>
               <h3 className="underline cursor-pointer text-lg">Edit profile</h3>
             </button>

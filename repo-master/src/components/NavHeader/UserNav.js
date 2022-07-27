@@ -13,9 +13,9 @@ export default function UserNav() {
   const handleLogout = () => {
     localStorageServ.userInfor.remove();
     localStorageServ.token.remove();
-    setTimeout(() => {
-      history.push("/login");
-    }, 1500);
+    // setTimeout(() => {
+    //   history.push("/login");
+    // }, 1500);
     dispatch({
       type: LOGIN,
       payload: null,

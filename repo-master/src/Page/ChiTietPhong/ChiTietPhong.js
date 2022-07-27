@@ -18,16 +18,20 @@ import { set_spinner_end, set_spinner_start } from '../../redux/Actions/spinnerA
 import httpServ from '../../serviceWorker/http.service';
 import { useFormik } from 'formik';
 import { format } from "date-fns";
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 
 
 export default function ChiTietPhong() {
+  const { userInfor } = useSelector((state) => state.userReducer);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalCalendar, setIsModalCalendar] = useState(false);
   const [noOfGuests, setNoOfGuests] = useState(0);
   const [noOfGuestsNho, setNoOfGuestsNho] = useState(0);
   const [noOfGuestsLon, setNoOfGuestsLon] = useState(0);
   const [noOfGuestsVua, setNoOfGuestsVua] = useState(0);
+  const [noSoNgay, setNoSoNgay] = useState(0);
   const [noLink, setNoLink] = useState("");
 
   const [isModalImageVisible, setIsModalImageVisible] = useState(false);
@@ -75,11 +79,17 @@ export default function ChiTietPhong() {
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const startDateCheck = moment(startDate);
+  const timeEndCheck = moment(endDate);
+  const diff = timeEndCheck.diff(startDate);
+  const diffDuration =moment.duration(diff);
 
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
+   // setNoSoNgay(endDate.toISOString() - startDate.toISOString());
   }
+
 
   const formatminDate = format(new Date(), "dd MMMM yy");
   const formatStartDate = format(new Date(startDate), "dd MMMM yy");
@@ -156,13 +166,11 @@ export default function ChiTietPhong() {
     httpServ
       .layThongTinPhong(id)
       .then((res) => {
-        console.log("res", res);
         setDataRomLo(res.data.locationId);
         setDataRom(res.data);
         setNoLink(res.data._id)
       })
       .catch((err) => {
-        console.log(err);
       });
   }, []);
 
@@ -177,16 +185,13 @@ export default function ChiTietPhong() {
         .datPhong(values)
         .then((res) => {
           message.success("Đặt phòng thanh công");
-          console.log("res", res);
         })
         .catch((err) => {
           message.error("Đặt phòng thật bại");
-          console.log(err);
         });
-      console.log("init",values);
+      console.log("init", values);
     },
   });
-//console.log("startday", dataRoom._id);
 
   return (
     <div>
@@ -520,15 +525,26 @@ export default function ChiTietPhong() {
                           </div>
                         </div>
                       </div>
-                      <form onSubmit={(event) => {
-                        event.preventDefault();
-                        formik.handleSubmit(event);
-                      }} className="mt-5">
-                        <button className="focus:outline-none w-full rounded-xl transform active:scale-90" style={{ background: " linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%)" }} type="submit">
-                          <p className="text-white font-bold text-xl mt-3">Check availability</p>
-                        </button>
-                      </form>
-                      <p>Vinh</p>
+                      {userInfor === null ? (
+                        <></>
+                      ) : (
+                        <form onSubmit={(event) => {
+                          event.preventDefault();
+                          formik.handleSubmit(event);
+                        }} className="mt-5">
+                          <button className="focus:outline-none w-full rounded-xl transform active:scale-90" style={{ background: " linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%)" }} type="submit">
+                            <p className="text-white font-bold text-xl mt-3">Check availability</p>
+                          </button>
+                        </form>
+                      )}
+                      <div className="flex justify-between my-6 pb-4 border-b">
+                      <p className="text-gray-400 underline text-lg">${dataRoom.price} x {diffDuration.days()} night</p>
+                      <p className="text-gray-400 underline text-lg">${dataRoom.price * diffDuration.days()}</p>
+                      </div>
+                      <div className="flex justify-between">
+                      <p className="text-gray-400 underline text-lg">Total before taxes</p>
+                      <p className="text-gray-400 underline text-lg">${dataRoom.price * diffDuration.days()}</p>
+                      </div>
                     </div>
                   </div>
                   <div className="flex justify-center mt-2">
